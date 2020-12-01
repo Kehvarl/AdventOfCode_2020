@@ -3,8 +3,10 @@
 with open("input.txt") as f:
     content = f.readlines()
 
+content = [int(num.strip()) for num in content]
+
 for v1 in content:
     for v2 in content:
         for v3 in content:
-            if (int(v1) + int(v2) + int(v3) == 2020):
-                print(v1, v2, v3, (int(v1)*int(v2))*int(v3))
+            if v1 + v2 + v3 == 2020:
+                print(v1, v2, v3, (v1*v2*v3))
