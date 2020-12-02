@@ -9,5 +9,4 @@ for line in data_in:
     if (password[int(pos1) - 1] == letter) ^ (password[int(pos2) - 1] == letter):
         valid += 1
 
-
 print(valid)
