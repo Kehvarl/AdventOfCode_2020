@@ -1,4 +1,3 @@
-
 with open("input.txt") as f:
     data_in = f.readlines()
 
@@ -20,13 +19,8 @@ def check_slope(r, d):
 
     return tree
 
-tests = []
-tests.append(check_slope(1, 1))
-tests.append(check_slope(3, 1))
-tests.append(check_slope(5, 1))
-tests.append(check_slope(7, 1))
-tests.append(check_slope(1, 2))
+
+tests = [check_slope(1, 1), check_slope(3, 1), check_slope(5, 1), check_slope(7, 1), check_slope(1, 2)]
 
 print(tests)
 print(tests[0] * tests[1] * tests[2] * tests[3] * tests[4])
-
