@@ -54,7 +54,7 @@ for port in ports:
                 break
 
         elif key == 'hcl':
-            if not re.match(r'\#[0-9a-f]{6}', val):
+            if not re.match(r'#[0-9a-f]{6}', val):
                 break
         elif key == 'ecl':
             if val not in ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']:
