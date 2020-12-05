@@ -19,10 +19,16 @@ def seat_decode(boarding_pass):
     return row, col, (row * 8 + col)
 
 
-highest = 0
+seats = []
 for boarding in content:
-    print(seat_decode(boarding))
-    highest = max(highest, seat_decode(boarding)[2])
+    seat = seat_decode(boarding)
+    seats.append(seat[2])
 
-print(highest)
+seats.sort()
+
+for s in range(len(seats)-1):
+    if seats[s+1] > seats[s] + 1:
+        print(seats[s] + 1)
+
+print(max(seats))
 
