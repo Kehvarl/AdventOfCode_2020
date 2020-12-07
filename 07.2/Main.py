@@ -3,8 +3,6 @@ with open("input.txt") as f:
     content = f.readlines()
 
 
-desired_bag = set()
-desired_bag.add('shiny gold')
 bag_rules = {}
 
 for rule in content:
@@ -22,19 +20,17 @@ for rule in content:
             bag_rules[bag][color] += int(number)
 
 
-def decode_bag(color):
-    if len(bag_rules[color]) == 0:
+def decode_bag(bag_color):
+    if len(bag_rules[bag_color]) == 0:
         return 0
 
-    print(bag_rules[color])
     total = 0
-    for bag in bag_rules[color]:
-        bags = bag_rules[color][bag]
-        inside = decode_bag(bag)
+    for search_bag in bag_rules[bag_color]:
+        bags = bag_rules[bag_color][search_bag]
+        inside = decode_bag(search_bag)
         total += bags + bags * inside
 
     return total
 
 
 print(decode_bag('shiny gold'))
-# print(decode_bag('dark olive'))
