@@ -1,3 +1,4 @@
-**/input.txt
+**input.txt
 *.pyc
 *.txt
+.idea/
