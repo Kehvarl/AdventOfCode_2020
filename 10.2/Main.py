@@ -9,7 +9,8 @@ content.sort()
 memo = {0: 1}
 
 for v in content:
-    memo[v] = 0
+    if v not in memo:
+        memo[v] = 0
     for n in [1, 2, 3]:
         if v - n in memo:
             memo[v] += memo[v - n]
