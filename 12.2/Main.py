@@ -11,18 +11,18 @@ wy = -1
 
 
 def move(move_direction, distance):
-    x = 0
-    y = 0
+    move_x = 0
+    move_y = 0
     if move_direction == "N":
-        y -= distance
+        move_y -= distance
     elif move_direction == "S":
-        y += distance
+        move_y += distance
     elif move_direction == "E":
-        x += distance
+        move_x += distance
     elif move_direction == "W":
-        x -= distance
+        move_x -= distance
 
-    return x, y
+    return move_x, move_y
 
 
 def turn(current, rotate, amount):
