@@ -42,7 +42,20 @@ interval = []
 for i in range(len(bus_ids)):
     if bus_ids[i].isnumeric():
         temp_bus = int(bus_ids[i])
+        bus_ids[i] = temp_bus
         bus.append(temp_bus)
         interval.append((temp_bus - i) % temp_bus)
 
 print(chinese_remainder(bus, interval))
+
+
+# Alternate solution.
+from itertools import count
+n = int(ignore)
+buses = tuple((i, b) for i, b in enumerate(bus_ids) if isinstance(b, int))
+step = 1
+print(buses)
+for i, b in buses:
+    n = next(c for c in count(n, step) if (c + i) % b == 0)
+    step *= b
+print(n)
