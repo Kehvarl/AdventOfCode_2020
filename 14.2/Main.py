@@ -6,24 +6,18 @@ mask = ""
 memory = {}
 
 
-def set_value(val, set_mask):
-    for i in range(len(set_mask)):
-        if set_mask[i] == "1":
-            val = val | (1 << (35 - i))
-
-    return val
-
-
-def get_addresses(mask, addr):
-    addresses = [addr]
-    for i in range(len(mask)):
-        if mask[i] == "X":
-            t_mask = mask[0:i] + "." + mask[i + 1:]
-            addr |= (1 << (35 - i))
-            addresses.extend(get_addresses(t_mask, addr))
-            addr &= ~(1 << (35 - i))
-            addresses.extend(get_addresses(t_mask, addr))
-    return addresses
+def get_masks(index, working_mask):
+    if not working_mask:
+        yield 0
+    else:
+        for m in get_masks(index // 2, working_mask[:-1]):
+            if working_mask[-1] == '0':
+                yield 2 * m + index % 2
+            if working_mask[-1] == '1':
+                yield 2 * m + 1
+            if working_mask[-1] == 'X':
+                yield 2 * m + 0
+                yield 2 * m + 1
 
 
 for line in content:
@@ -32,9 +26,9 @@ for line in content:
         mask = value
     else:
         value = int(value)
-        addrresses = get_addresses(mask, set_value(int(command.strip("mem[").strip("]")), mask))
-        for addr in addrresses:
-            memory[addr] = value
+        addr = int(command.strip("mem[").strip("]"))
+        for mask_addr in get_masks(addr, mask):
+            memory[mask_addr] = value
 
 
 print(memory)
